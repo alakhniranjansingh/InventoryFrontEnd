@@ -1,0 +1,89 @@
+/* Reset and base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f5f7;
+  color: #333;
+  height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #bdbdbd;
+  border-radius: 4px;
+}
+
+/* PrimeNG overrides */
+body .p-button {
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+body .p-inputtext {
+  border-radius: 8px;
+  font-size: 14px;
+  padding: 0.5rem;
+}
+
+body .p-panel {
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Card-like shadow for containers */
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
+}
+/* Make Dialog box background non-transparent */
+.p-dialog {
+  background-color: #ffffff !important; /* Set to white or any light color */
+  opacity: 1 !important; /* Make it fully opaque */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a light shadow for a clean look */
+}
+
+/* If you want to change the header style of the dialog */
+.p-dialog-header {
+  background-color: #007bff !important; /* Choose a color */
+  color: white !important; /* Text color */
+  font-size: 1.2em; /* Adjust font size */
+}
+
+/* Change button styles inside the dialog */
+.p-dialog-footer button {
+  background-color: #007bff !important; /* Button background */
+  color: white !important; /* Button text color */
+  border-radius: 4px; /* Rounded corners */
+}
+
+.p-dialog-footer button.p-button-secondary {
+  background-color: #6c757d !important; /* Secondary button color */
+}
+
+/* Customizing input fields inside the dialog */
+.p-field input {
+  background-color: #f8f9fa !important; /* Light background for input fields */
+  border: 1px solid #ced4da !important; /* Light border */
+}
+/* Background blur effect when the dialog is visible */
+.p-dialog-mask {
+  backdrop-filter: blur(5px) !important; /* Apply blur */
+}

@@ -1,0 +1,79 @@
+/* Table Styling */
+.item-table ::ng-deep .p-datatable {
+  border-radius: 10px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.item-table ::ng-deep .p-datatable-thead > tr > th {
+  background-color: #f4f4f4;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 12px;
+}
+
+.item-table ::ng-deep .p-datatable-tbody > tr > td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+/* Buttons */
+button.p-button-rounded {
+  margin-right: 5px;
+  min-width: 2.5rem;
+}
+
+.p-button-sm {
+  font-size: 13px;
+  padding: 6px 10px;
+}
+
+/* Dialog */
+.custom-dialog ::ng-deep .p-dialog {
+  border-radius: 12px;
+}
+
+.custom-dialog ::ng-deep .p-dialog-header {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Form Fields */
+.p-field {
+  margin-bottom: 1rem;
+}
+
+.p-field label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.p-inputtext {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+/* Custom Confirm Dialog */
+.custom-confirm-dialog ::ng-deep .p-confirm-dialog {
+  border-radius: 10px;
+}
+
+.custom-confirm-dialog ::ng-deep .p-confirm-dialog .p-dialog-header {
+  background-color: #ffe8e8;
+  color: #a80000;
+}
+
+/* Responsive Tweaks */
+@media screen and (max-width: 768px) {
+  .item-table ::ng-deep .p-datatable-thead > tr > th,
+  .item-table ::ng-deep .p-datatable-tbody > tr > td {
+    padding: 8px;
+  }
+
+  .custom-dialog ::ng-deep .p-dialog {
+    width: 95% !important;
+  }
+}

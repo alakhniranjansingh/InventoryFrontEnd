@@ -1,0 +1,26 @@
+<div class="layout-wrapper">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>IMS Panel</h2>
+    <a routerLink="/dashboard">📊 Dashboard</a>
+    <a routerLink="/items">📦 Items</a>
+    <a routerLink="/stock-in">➕ Stock In</a>
+    <a routerLink="/stock-out">➖ Stock Out</a>
+    <a routerLink="/reports">📈 Reports</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="header">
+      Inventory Management System
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="footer">
+      © 2025 IMS Pro | All rights reserved
+    </div>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background: #3f51b5;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.sidebar h2 {
+  margin-bottom: 1rem;
+  font-size: 20px;
+}
+
+.sidebar a {
+  color: white;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Main area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* Header */
+.header {
+  background-color: white;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #ddd;
+  font-size: 1.3rem;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+/* Content Area */
+.content {
+  padding: 2rem;
+  background-color: #f4f5f7;
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Footer */
+.footer {
+  background-color: white;
+  padding: 1rem;
+  text-align: center;
+  font-size: 13px;
+  color: #777;
+  border-top: 1px solid #eee;
+}
+/* Example: customizing the position of toast notifications */
+.p-toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}

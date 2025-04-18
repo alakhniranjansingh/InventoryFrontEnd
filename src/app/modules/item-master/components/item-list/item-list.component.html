@@ -1,0 +1,206 @@
+<!--
+<div class="p-mb-2">
+  <button pButton type="button" label="Add Item" icon="pi pi-plus" class="p-button-success p-button-rounded" (click)="openAddDialog()">Add New Item</button>
+</div>
+
+<div class="p-mb-2">
+<p-confirmDialog header="Confirm Delete" icon="pi pi-exclamation-triangle" class="custom-confirm-dialog"></p-confirmDialog>
+</div>
+<p-panel header="Item Master">
+  <div class="card">
+
+
+<p-table
+[value]="items"
+[paginator]="true"
+[rows]="10"
+[rowsPerPageOptions]="[5,10,15,20]"
+[responsiveLayout]="'scroll'">
+
+
+
+
+<ng-template pTemplate="header">
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Category</th>
+    <th>Unit</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+</ng-template>
+
+<ng-template pTemplate="body" let-item>
+  <tr>
+    <td>{{ item.name }}</td>
+    <td>{{ item.description }}</td>
+    <td>{{ item.category }}</td>
+    <td>{{ item.unit }}</td>
+    <td>{{ item.price | currency:'INR' }}</td>
+    <td>
+      <button pButton icon="pi pi-pencil" class="p-button-sm p-button-info p-button-rounded" (click)="openEditDialog(item)">Edit</button>
+      <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger p-button-rounded" (click)="deleteItem(item.itemId)">Delete</button>
+    </td>
+  </tr>
+</ng-template>
+
+
+<ng-template #customPaginator let-state>
+  <div class="p-d-flex p-jc-between p-ai-center p-flex-wrap p-p-2">
+    <div>
+      <button pButton icon="pi pi-angle-double-left" (click)="state.changePageToFirst()" [disabled]="state.page === 0" class="p-button-text p-button-sm me-1" ></button>
+      <button pButton icon="pi pi-angle-left" (click)="state.changePageToPrev()" [disabled]="state.page === 0" class="p-button-text p-button-sm me-2" ></button>
+      <span class="text-sm">Page {{ state.page + 1 }} of {{ state.totalPages }}</span>
+      <button pButton icon="pi pi-angle-right" (click)="state.changePageToNext()" [disabled]="state.page + 1 >= state.totalPages" class="p-button-text p-button-sm ms-2" ></button>
+      <button pButton icon="pi pi-angle-double-right" (click)="state.changePageToLast()" [disabled]="state.page + 1 >= state.totalPages" class="p-button-text p-button-sm ms-1" ></button>
+    </div>
+    <div class="p-d-flex p-ai-center">
+      <span class="me-2">Rows per page:</span>
+      <p-dropdown
+        [options]="[{label:'5',value:5},{label:'10',value:10},{label:'20',value:20},{label:'50',value:50}]"
+        [(ngModel)]="state.rows"
+        (onChange)="state.changePageToFirst()"
+        styleClass="p-inputtext-sm"
+      ></p-dropdown>
+    </div>
+  </div>
+</ng-template>
+</p-table>
+    <p-table></p-table>
+  </div>
+</p-panel>
+
+<p-dialog header="{{ isEdit ? 'Edit Item' : 'Add Item' }}" [(visible)]="displayDialog" [modal]="true" [style]="{ width: '450px' }" [responsive]="true" class="p-fluid">
+  <form [formGroup]="itemForm" (ngSubmit)="saveItem()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" />
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <input id="description" type="text" pInputText formControlName="description" />
+      </div>
+      <div class="p-field">
+        <label for="category">Category</label>
+        <input id="category" type="text" pInputText formControlName="category" />
+      </div>
+      <div class="p-field">
+        <label for="unit">Unit</label>
+        <input id="unit" type="text" pInputText formControlName="unit" />
+      </div>
+      <div class="p-field">
+        <label for="price">Price</label>
+        <input id="price" type="number" pInputText formControlName="price" />
+      </div>
+    </div>
+    <p-footer>
+      <button pButton type="submit" label="Save" class="p-button-success p-button-rounded">Save</button>
+      <button pButton type="button" label="Cancel" class="p-button-secondary p-button-rounded" (click)="closeDialog()">Cancel</button>
+    </p-footer>
+  </form>
+</p-dialog>
+<p-toast></p-toast> -->
+
+
+
+<div class="p-mb-2">
+  <button pButton type="button" label="Add Item" icon="pi pi-plus" class="p-button-success p-button-rounded" (click)="openAddDialog()">Add New Item</button>
+</div>
+
+<div class="p-mb-2">
+  <p-confirmDialog header="Confirm Delete" icon="pi pi-exclamation-triangle" class="custom-confirm-dialog"></p-confirmDialog>
+</div>
+
+<p-panel header="Item Master">
+  <div class="card">
+    <p-table
+      [value]="items"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[5,10,15,20]"
+      [responsiveLayout]="'scroll'">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Category</th>
+          <th>Unit</th>
+          <th>Price</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.category }}</td>
+          <td>{{ item.unit }}</td>
+          <td>{{ item.price | currency:'INR' }}</td>
+          <td>
+            <button pButton icon="pi pi-pencil" class="p-button-sm p-button-info p-button-rounded" (click)="openEditDialog(item)">Edit</button>
+            <button pButton icon="pi pi-trash" class="p-button-sm p-button-danger p-button-rounded" (click)="deleteItem(item.itemId)">Delete</button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template #customPaginator let-state>
+        <div class="p-d-flex p-jc-between p-ai-center p-flex-wrap p-p-2">
+          <div>
+            <button pButton icon="pi pi-angle-double-left" (click)="state.changePageToFirst()" [disabled]="state.page === 0" class="p-button-text p-button-sm me-1"></button>
+            <button pButton icon="pi pi-angle-left" (click)="state.changePageToPrev()" [disabled]="state.page === 0" class="p-button-text p-button-sm me-2"></button>
+            <span class="text-sm">Page {{ state.page + 1 }} of {{ state.totalPages }}</span>
+            <button pButton icon="pi pi-angle-right" (click)="state.changePageToNext()" [disabled]="state.page + 1 >= state.totalPages" class="p-button-text p-button-sm ms-2"></button>
+            <button pButton icon="pi pi-angle-double-right" (click)="state.changePageToLast()" [disabled]="state.page + 1 >= state.totalPages" class="p-button-text p-button-sm ms-1"></button>
+          </div>
+          <div class="p-d-flex p-ai-center">
+            <span class="me-2">Rows per page:</span>
+            <p-dropdown
+              [options]="[{label:'5',value:5},{label:'10',value:10},{label:'20',value:20},{label:'50',value:50}]"
+              [(ngModel)]="state.rows"
+              (onChange)="state.changePageToFirst()"
+              styleClass="p-inputtext-sm">
+            </p-dropdown>
+          </div>
+        </div>
+      </ng-template>
+    </p-table>
+  </div>
+</p-panel>
+
+<p-dialog header="{{ isEdit ? 'Edit Item' : 'Add Item' }}" [(visible)]="displayDialog" [modal]="true" [style]="{ width: '450px' }" [responsive]="true" class="p-fluid">
+  <!-- Start of the form -->
+  <form [formGroup]="itemForm" (ngSubmit)="saveItem()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" pInputText formControlName="name" />
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <input id="description" type="text" pInputText formControlName="description" />
+      </div>
+      <div class="p-field">
+        <label for="category">Category</label>
+        <input id="category" type="text" pInputText formControlName="category" />
+      </div>
+      <div class="p-field">
+        <label for="unit">Unit</label>
+        <input id="unit" type="text" pInputText formControlName="unit" />
+      </div>
+      <div class="p-field">
+        <label for="price">Price</label>
+        <input id="price" type="number" pInputText formControlName="price" />
+      </div>
+      <p-footer>
+        <button type="button" pButton label="Cancel" icon="pi pi-times" (click)="closeDialog()"></button>
+        <button type="submit" pButton label="Save" icon="pi pi-check" [disabled]="itemForm.invalid"></button>
+      </p-footer>
+    </div>
+  </form>
+  <!-- End of the form -->
+</p-dialog>
+
+<p-toast></p-toast>
