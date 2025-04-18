@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "dev":"ng serve --watch",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:InventoryManagementSystem": "node dist/inventory-management-system/server/server.mjs"
