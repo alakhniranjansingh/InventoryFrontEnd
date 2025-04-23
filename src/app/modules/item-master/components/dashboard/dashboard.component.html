@@ -1,0 +1,553 @@
+<div class="card flex justify-center" style="width: 100%;">
+  <p-accordion value="0">
+    <p-accordion-panel value="0">
+      <p-accordion-header>Item Master</p-accordion-header>
+      <p-accordion-content>
+        <!-- <p class="m-0"> -->
+          <!-- Item Master -->
+
+
+        <div
+          class="p-mb-2"
+          style="
+            height: 50px;
+            width: 100px;
+            margin: 20px 20px 20px 20px;
+            padding: 20px;
+          "
+        >
+          <button
+            pButton
+            type="button"
+            label="Add Item"
+            icon="pi pi-plus"
+            style="
+              height: 50px;
+              width: 100px;
+              background: rgb(209, 236, 166);
+              margin-bottom: 20px;
+            "
+            class="p-button-success p-button-rounded"
+            (click)="openAddDialog()"
+          >
+            Add New Item
+          </button>
+        </div>
+
+        <div class="p-mb-2">
+          <p-confirmDialog
+            header="Confirm Delete"
+            icon="pi pi-exclamation-triangle"
+            class="custom-confirm-dialog"
+          ></p-confirmDialog>
+        </div>
+
+        <p-panel header="Item Master" *ngIf="isPanelVisible" [@panelContent]>
+          <div class="card">
+            <p-table
+              [value]="items"
+              [paginator]="true"
+              [rows]="10"
+              [rowsPerPageOptions]="[5, 10, 15, 20]"
+              [responsiveLayout]="'scroll'"
+              [styleClass]="'custom-table-style'"
+            >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Unit</th>
+                  <th>Price</th>
+                  <th>Actions</th>
+
+                  <th>Stock-In</th>
+                  <th>Stock-Out</th>
+                  <th>Add to Cart</th>
+                  <th>history</th>
+                </tr>
+              </ng-template>
+
+              <ng-template pTemplate="body" let-item>
+                <tr>
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.description }}</td>
+                  <td>{{ item.category }}</td>
+                  <td>{{ item.unit }}</td>
+                  <td>{{ item.price | currency : "INR" }}</td>
+                  <td>
+                    <button
+                      pButton
+                      icon="pi pi-pencil"
+                      class="p-button-sm p-button-info p-button-rounded"
+                      (click)="openEditDialog(item)"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      pButton
+                      icon="pi pi-trash"
+                      class="p-button-sm p-button-danger p-button-rounded"
+                      (click)="deleteItem(item.itemId)"
+                    >
+                      Delete
+                    </button>
+                  </td>
+
+                  <td>
+                    <input
+                      type="number"
+                      [(ngModel)]="stockInAmounts[item.itemId]"
+                    />
+                    <button (click)="stockIn(item.itemId)">Add Stock</button>
+                  </td>
+                  <td>
+                    <input
+                      type="number"
+                      [(ngModel)]="stockOutAmounts[item.itemId]"
+                    />
+
+                    <button (click)="stockOut(item.itemId)">
+                      Remove Stock
+                    </button>
+                  </td>
+
+                  <td>
+                    <div class="p-2">
+                      <input
+                        type="number"
+                        min="1"
+                        [(ngModel)]="cartQuantities[item.itemId]"
+                        placeholder="Qty"
+                        style="width: 70px; margin-right: 8px"
+                      />
+                      Add to Cart
+                      <button
+                        pButton
+                        type="button"
+                        icon="pi pi-shopping-cart"
+                        class="p-button-sm p-button-rounded p-button-success"
+                        (click)="addToCart(item, cartQuantities[item.itemId])"
+                      ></button>
+                    </div>
+                  </td>
+
+                  <td>
+                    <div class="p-4">
+                      <button
+                        (click)="viewTransactions(item.itemId)"
+                        class="btn btn-primary"
+                      >
+                        History
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </ng-template>
+
+              <ng-template #customPaginator let-state>
+                <div
+                  class="p-d-flex p-jc-between p-ai-center p-flex-wrap p-p-2"
+                  style="
+                    background-color: #f8f9fa;
+                    border-top: 1px solid #dee2e6;
+                    font-size: 14px;
+                  "
+                >
+                  <div class="p-d-flex p-ai-center" style="gap: 0.5rem">
+                    <button
+                      pButton
+                      icon="pi pi-angle-double-left"
+                      label="First"
+                      iconPos="left"
+                      (click)="state.changePageToFirst()"
+                      [disabled]="state.page === 0"
+                      class="p-button-outlined p-button-sm"
+                    ></button>
+
+                    <button
+                      pButton
+                      icon="pi pi-angle-left"
+                      label="Previous"
+                      iconPos="left"
+                      (click)="state.changePageToPrev()"
+                      [disabled]="state.page === 0"
+                      class="p-button-outlined p-button-sm"
+                    ></button>
+
+                    <span style="font-weight: 500; margin: 0 0.75rem">
+                      Page <strong>{{ state.page + 1 }}</strong> of
+                      <strong>{{ state.totalPages }}</strong>
+                    </span>
+
+                    <button
+                      pButton
+                      icon="pi pi-angle-right"
+                      label="Next"
+                      iconPos="right"
+                      (click)="state.changePageToNext()"
+                      [disabled]="state.page + 1 >= state.totalPages"
+                      class="p-button-outlined p-button-sm"
+                    ></button>
+
+                    <button
+                      pButton
+                      icon="pi pi-angle-double-right"
+                      label="Last"
+                      iconPos="right"
+                      (click)="state.changePageToLast()"
+                      [disabled]="state.page + 1 >= state.totalPages"
+                      class="p-button-outlined p-button-sm"
+                    ></button>
+                  </div>
+
+                  <div class="p-d-flex p-ai-center" style="gap: 0.5rem">
+                    <span style="font-weight: 500">Rows per page:</span>
+                    <p-dropdown
+                      [options]="[
+                        { label: '5', value: 5 },
+                        { label: '10', value: 10 },
+                        { label: '20', value: 20 },
+                        { label: '50', value: 50 }
+                      ]"
+                      [(ngModel)]="state.rows"
+                      (onChange)="state.changePageToFirst()"
+                      styleClass="p-inputtext-sm"
+                      [style]="{
+                        width: '100px',
+                        height: '35px',
+                        borderRadius: '5px',
+                        border: '1px solid #ccc',
+                        padding: '8px 12px',
+                        fontSize: '14px',
+                        color: '#333',
+                        backgroundColor: '#fff',
+                        boxShadow: 'inset 0 1px 3px rgba(0, 0, 0, 0.1)',
+                        transition: 'border 0.3s, box-shadow 0.3s'
+                      }"
+                    ></p-dropdown>
+                  </div>
+                </div>
+              </ng-template>
+            </p-table>
+          </div>
+        </p-panel>
+
+        <p-dialog
+          header="{{ isEdit ? 'Edit Item' : 'Add Item' }}"
+          [(visible)]="displayDialog"
+          [modal]="true"
+          [style]="{
+            width: '60%',
+            height: '70%',
+            backgroundColor: '#f8f9fa',
+            padding: '1rem',
+            border: '4px solid #f8f9fa',
+            borderRadius: '30px',
+            boxShadow: '4px 4px 8px #fff'
+          }"
+          [@panelContent]
+          [responsive]="true"
+          class="p-fluid"
+        >
+          <form
+            [formGroup]="itemForm"
+            autocomplete="off"
+            (ngSubmit)="saveItem()"
+          >
+            <div class="p-fluid">
+              <div class="p-field">
+                <label for="name">Name</label>
+                <input
+                  id="name"
+                  type="text"
+                  style="
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                    transition: border 0.3s, box-shadow 0.3s;
+                  "
+                  required
+                  placeholder="Enter item name"
+                  pInputText
+                  formControlName="name"
+                />
+              </div>
+              <div class="p-field">
+                <label for="description">Description</label>
+                <input
+                  id="description"
+                  type="text"
+                  style="
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                    transition: border 0.3s, box-shadow 0.3s;
+                  "
+                  required
+                  placeholder="Enter description"
+                  pInputText
+                  formControlName="description"
+                />
+              </div>
+              <div class="p-field">
+                <label for="category">Category</label>
+                <input
+                  id="category"
+                  type="text"
+                  style="
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                    transition: border 0.3s, box-shadow 0.3s;
+                  "
+                  required
+                  placeholder="Enter category"
+                  pInputText
+                  formControlName="category"
+                />
+              </div>
+              <div class="p-field">
+                <label for="unit">Unit</label>
+                <input
+                  id="unit"
+                  type="text"
+                  style="
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                    transition: border 0.3s, box-shadow 0.3s;
+                  "
+                  required
+                  placeholder="Enter number of unit"
+                  pInputText
+                  formControlName="unit"
+                />
+              </div>
+              <div class="p-field">
+                <label for="price">Price</label>
+                <input
+                  id="price"
+                  type="number"
+                  style="
+                    width: 100%;
+                    height: 35px;
+                    border-radius: 5px;
+                    border: 1px solid #ccc;
+                    padding: 8px 12px;
+                    font-size: 14px;
+                    color: #333;
+                    background-color: #fff;
+                    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                    transition: border 0.3s, box-shadow 0.3s;
+                  "
+                  required
+                  placeholder="Enter price of each unit"
+                  pInputText
+                  formControlName="price"
+                />
+              </div>
+              <p-footer
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  padding: 10px;
+                  background: #ffffff;
+                  border: 1px #ccc;
+                  border-radius: 10px;
+                "
+              >
+                <button
+                  type="submit"
+                  pButton
+                  label="Save"
+                  icon="pi pi-check"
+                  [disabled]="itemForm.invalid"
+                  style="
+                    min-width: 40%;
+                    height: 40px;
+                    font-weight: 500;
+                    color: black;
+                    border-radius: 5px;
+                    background: #fffdfd;
+                    border-radius: 5px;
+                  "
+                >
+                  Save
+                </button>
+
+                <button
+                  type="button"
+                  pButton
+                  label="Cancel"
+                  icon="pi pi-times"
+                  (click)="closeDialog()"
+                  style="
+                    min-width: 40%;
+                    height: 40px;
+                    font-weight: 500;
+                    border-radius: 5px;
+                    color: black;
+                    background-color: #f44336;
+                  "
+                  class="p-button-danger"
+                >
+                  Cancel
+                </button>
+              </p-footer>
+            </div>
+          </form>
+        </p-dialog>
+
+        <p-toast></p-toast>
+
+
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="1">
+      <p-accordion-header>Transaction History</p-accordion-header>
+      <p-accordion-content>
+        <!-- <p class="m-0"></p> -->
+
+
+
+<!-- Transaction History -->
+
+<div class="p-4">
+  <div class="card border shadow-sm p-4 mb-5 bg-white rounded">
+    <h4 class="mb-4">
+      📦 Transaction History for Item <strong>#{{ itemId }}</strong>
+    </h4>
+
+    <div class="text-end mb-4">
+      <button class="btn btn-success btn-sm" (click)="exportToExcel()">
+        <i class="bi bi-file-earmark-excel"></i> Export Excel
+      </button>
+    </div>
+
+    <div class="table-responsive">
+      <table class="custom-table table w-100">
+        <thead class="table-dark">
+          <tr>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Transaction Date</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="transactions?.length; else noData">
+          <tr *ngFor="let tx of transactions">
+            <td>{{ tx.itemName }}</td>
+            <td>{{ tx.quantity }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'badge bg-success': tx.type === 'StockIn',
+                  'badge bg-danger': tx.type === 'StockOut'
+                }"
+                >{{ tx.type }}</span
+              >
+            </td>
+            <td>{{ tx.transactionDate | date : "medium" }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <ng-template #noData>
+      <div class="text-center text-muted mt-4">
+        No transactions found for this item.
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+      </p-accordion-content>
+    </p-accordion-panel>
+
+    <p-accordion-panel value="2">
+      <p-accordion-header>Cart</p-accordion-header>
+      <p-accordion-content>
+        <!-- <p class="m-0"></p> -->
+
+
+<!-- Add to Cart -->
+
+<div
+style="
+  width: 100%;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #ffffff;
+"
+>
+<h2>🛒 Your Cart</h2>
+
+<table
+  class="table table-bordered"
+  *ngIf="cartItems.length > 0; else emptyCart"
+>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price (₹)</th>
+      <th>Total (₹)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems">
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.quantity * item.price }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>
+
+<h3 *ngIf="cartItems.length">Total Amount: ₹{{ getTotal() }}</h3>
+
+<button
+  class="btn btn-success"
+  (click)="purchase()"
+  [disabled]="!cartItems.length"
+>
+  Purchase
+</button>
+</div>
+
+      </p-accordion-content>
+    </p-accordion-panel>
+  </p-accordion>
+</div>

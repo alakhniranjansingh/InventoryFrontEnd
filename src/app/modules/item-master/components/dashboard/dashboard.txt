@@ -1,0 +1,248 @@
+<!-- <div class="dashboard">
+  <h2>Dashboard</h2>
+  <div class="stats">
+    <div class="stat">
+      <h3>Total Items</h3>
+      <p>{{ totalItems }}</p>
+    </div>
+
+    <div class="stat">
+      <h3>Total Stocks</h3>
+      <p>{{ totalStock }}</p>
+    </div>
+
+    <div class="stat">
+      <h3>Total Stock In</h3>
+      <p>{{ totalStockIn }}</p>
+    </div>
+    <div class="stat">
+      <h3>Total Stock Out</h3>
+      <p>{{ totalStockOut }}</p>
+    </div>
+  </div>
+</div> -->
+
+
+
+<!-- integrating all components in a single table -->
+
+
+<!-- <h1>alakh</h1> -->
+
+
+
+<!-- <p-panel header="Item Master" *ngIf="isPanelVisible" [@panelContent]>
+  <div class="card">
+    <p-table
+      [value]="items"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[5, 10, 15, 20]"
+      [responsiveLayout]="'scroll'"
+    > -->
+
+
+
+
+
+
+
+<!-- 3rd -->
+<!--
+<div class="p-mb-2">
+  <button
+    pButton
+    type="button"
+    label="Add Item"
+    icon="pi pi-plus"
+    class="p-button-success p-button-rounded"
+    (click)="openAddDialog()"
+  >
+    Add New Item
+  </button>
+</div>
+
+<div class="p-mb-2">
+  <p-confirmDialog
+    header="Confirm Delete"
+    icon="pi pi-exclamation-triangle"
+    class="custom-confirm-dialog"
+  ></p-confirmDialog>
+</div>
+
+<p-panel header="Item Master" *ngIf="isPanelVisible" [@panelContent]>
+  <div class="card">
+    <p-table
+      [value]="items"
+      [paginator]="true"
+      [rows]="10"
+      [rowsPerPageOptions]="[5, 10, 15, 20]"
+      [responsiveLayout]="'scroll'"
+    >
+    </p-table>
+  </div>
+</p-panel>
+
+<p-dialog
+  header="{{ isEdit ? 'Edit Item' : 'Add Item' }}"
+  [(visible)]="displayDialog"
+  [modal]="true"
+  [style]="{
+    width: '60%',
+    height: '70%',
+    backgroundColor: '#f8f9fa',
+    padding: '1rem',
+    border: '4px solid #f8f9fa',
+    borderRadius: '30px',
+    boxShadow: '4px 4px 8px #fff'
+  }"
+  [responsive]="true"
+  class="p-fluid"
+  [@panelContent]
+>
+  <form [formGroup]="itemForm" autocomplete="off" (ngSubmit)="saveItem()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label for="name">Name</label>
+        <input
+          id="name"
+          type="text"
+          required
+          placeholder="Enter item name"
+          pInputText
+          formControlName="name"
+        />
+      </div>
+      <div class="p-field">
+        <label for="description">Description</label>
+        <input
+          id="description"
+          type="text"
+          required
+          placeholder="Enter description"
+          pInputText
+          formControlName="description"
+        />
+      </div>
+      <div class="p-field">
+        <label for="category">Category</label>
+        <input
+          id="category"
+          type="text"
+          required
+          placeholder="Enter category"
+          pInputText
+          formControlName="category"
+        />
+      </div>
+      <div class="p-field">
+        <label for="unit">Unit</label>
+        <input
+          id="unit"
+          type="text"
+          required
+          placeholder="Enter number of unit"
+          pInputText
+          formControlName="unit"
+        />
+      </div>
+      <div class="p-field">
+        <label for="price">Price</label>
+        <input
+          id="price"
+          type="number"
+          required
+          placeholder="Enter price of each unit"
+          pInputText
+          formControlName="price"
+        />
+      </div>
+    </div>
+    <p-footer>
+      <button
+        type="submit"
+        pButton
+        label="Save"
+        icon="pi pi-check"
+        [disabled]="itemForm.invalid"
+      ></button>
+      <button
+        type="button"
+        pButton
+        label="Cancel"
+        icon="pi pi-times"
+        (click)="closeDialog()"
+      ></button>
+    </p-footer>
+  </form>
+</p-dialog>
+
+ Toast
+<p-toast></p-toast>
+ -->
+
+
+ <!-- <div class="p-4">
+  <div class="card border shadow-sm p-3 mb-4 bg-white rounded">
+    <h4 class="mb-3">📦 Transaction History for Item {{ itemId }}</h4>
+
+    <div class="text-end mb-3">
+      <button class="btn btn-success btn-sm" (click)="exportToExcel()">
+        <i class="bi bi-file-earmark-excel"></i> Export Excel
+      </button>
+    </div>
+  </div>
+</div>
+
+<div>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Transaction Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tx of transactions">
+        <td>{{ tx.itemName }}</td>
+        <td>{{ tx.quantity }}</td>
+        <td>{{ tx.type }}</td>
+        <td>{{ tx.transactionDate | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+
+
+ //   totalItems: number = 0;
+    //   totalStockIn: number = 0;
+    //   totalStockOut: number = 0;
+    //   totalStock: number = 0;
+
+    //   constructor(private itemService: ItemService) {}
+
+    //   ngOnInit(): void {
+    //     // Fetch dashboard data from the service
+    //     this.itemService.getDashboardData().subscribe(
+    //       (data: {
+    //         totalItems: number;
+    //         totalStockIn: number;
+    //         totalStockOut: number;
+    //         totalStock: number;
+    //       }) => {
+
+    //         this.totalItems = data.totalItems || 0;
+    //         this.totalStockIn = data.totalStockIn || 0;
+    //         this.totalStockOut = data.totalStockOut || 0;
+
+
+    //       },
+    //       (error: any) => {
+    //         console.error('Error fetching dashboard data:', error);
+    //       }
+    //     );
+    //   }
+    // }

@@ -1,0 +1,75 @@
+
+<div class="stock-in">
+  <h2>Stock History</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Current Stock</th>
+        <th>Stock In</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.unit }}</td>
+        <td>
+          <!-- <input type="number" [(ngModel)]="stockInAmounts[item.itemId]" />
+          <button (click)="stockIn(item.itemId)">Add Stock</button> -->
+          <div class="p-4">
+            <button
+              (click)="viewTransactions(item.itemId)"
+              class="btn btn-primary"
+            >
+              History
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+ <div class="p-4">
+  <div class="card border shadow-sm p-3 mb-4 bg-white rounded">
+    <div >📦  <b>Transaction History for Item :</b> <br>  <b>Item Id :</b>   {{ itemId }} <br><b>Item Name :</b>  {{ getItemNameById(itemId) }} </div>
+
+    <div class="text-end mb-3">
+      <button class="btn btn-success btn-sm" (click)="exportToExcel()">
+        <i class="bi bi-file-earmark-excel"></i> Export Excel
+      </button>
+
+      <button class="btn btn-danger btn-sm" (click)="exportToPdf()">
+        <i class="bi bi-file-earmark-pdf"></i> Export PDF
+      </button>
+
+    </div>
+
+
+  </div>
+</div>
+
+<div>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Type</th>
+        <th>Transaction Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tx of transactions">
+        <td>{{ tx.itemName }}</td>
+        <td>{{ tx.quantity }}</td>
+        <td>{{ tx.type }}</td>
+        <td>{{ tx.transactionDate | date: 'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,26 +1,25 @@
-<div class="layout-wrapper">
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>IMS Panel</h2>
-    <a routerLink="/dashboard">📊 Dashboard</a>
-    <a routerLink="/items">📦 Items</a>
-    <a routerLink="/stock-in">➕ Stock In</a>
-    <a routerLink="/stock-out">➖ Stock Out</a>
-    <a routerLink="/reports">📈 Reports</a>
-  </div>
-
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="header">
-      Inventory Management System
-    </div>
-
-    <div class="content">
-      <router-outlet></router-outlet>
-    </div>
-
-    <div class="footer">
-      © 2025 IMS Pro | All rights reserved
-    </div>
-  </div>
+<div class="top-bar">
+  <span class="title">Inventory Management System</span>
 </div>
+
+<div style="display: flex ; background-color: aqua;" class="sidebar">
+  <!-- <h2>IMS Panel</h2> -->
+  <a routerLink="/dashboard" routerLinkActive="active-link" style="margin: 20px;">📊 Dashboard</a><br />
+  <a routerLink="/items" routerLinkActive="active-link"style="margin: 20px;">📦 Items</a><br />
+  <a routerLink="/stock-in" routerLinkActive="active-link"style="margin: 20px;">➕ Stock In</a><br />
+  <a routerLink="/stock-out" routerLinkActive="active-link"style="margin: 20px;">➖ Stock Out</a><br />
+  <a routerLink="/cart" routerLinkActive="active-link"style="margin: 20px;">🛒 Add to Cart</a><br />
+
+
+  <a routerLink="/stock-history" routerLinkActive="active-link"style="margin: 20px;">📋 Stock-History</a><br />
+  <a routerLink="/pagination" routerLinkActive="active-link"style="margin: 20px;">📈 Dynamic Pagination</a><br />
+  <a routerLink="/testpage" routerLinkActive="active-link"style="margin: 20px;">💡 Test Page</a><br />
+  <!-- <a routerLink="/reports" routerLinkActive="active-link">📈 Reports</a><br /> -->
+
+</div >
+
+
+<p-toast position="bottom-left"></p-toast>
+<!-- <div class="main-content"> -->
+  <router-outlet></router-outlet>
+<!-- </div> -->

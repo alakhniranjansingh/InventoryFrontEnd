@@ -1,19 +1,31 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MessageService } from 'primeng/api';
-
+import { SidebarModule } from 'primeng/sidebar';
+import { ButtonModule } from 'primeng/button';
+import { MenubarModule } from 'primeng/menubar';
+import { RouterModule } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet,RouterModule,ToastModule, SidebarModule, ButtonModule, MenubarModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrls: ['./app.component.css'],
   providers: [MessageService]
 })
 export class AppComponent {
   title = 'InventoryManagementSystem';
-  messageService: any;
+sidebarVisible: boolean = true;
+  // visible: boolean = true;
+
+  // toggleSidebar() {
+  //   this.visible = !this.visible;
+  // }
+
+  constructor(private messageService: MessageService) {}
+
   showToast() {
-    // Example: showing a success message
-    this.messageService.add({severity: 'success', summary: 'Success', detail: 'Item added successfully!'});
+    this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Item added successfully!' });
   }
 }

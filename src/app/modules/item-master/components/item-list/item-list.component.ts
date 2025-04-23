@@ -130,6 +130,8 @@
 
 
 // }
+
+
 import { Component, OnInit } from '@angular/core';
 import { ItemService, Item } from '../services/item.service';
 import { CommonModule } from '@angular/common';
@@ -145,12 +147,26 @@ import { HttpClient } from '@angular/common/http';
 import { PaginatorModule } from 'primeng/paginator';
 import { PanelModule } from 'primeng/panel';
 import { ToastModule } from 'primeng/toast';
-
+import { trigger, transition, style, animate } from '@angular/animations';
+// import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+// import { HttpHeaders } from '@angular/common/http'; // Import HttpHeaders
 @Component({
   selector: 'app-item-list',
   standalone: true,
   imports: [CommonModule, ToastModule, PanelModule, FormsModule, DropdownModule, ConfirmDialogModule, PaginatorModule, TableModule, DialogModule, ReactiveFormsModule],
   templateUrl: './item-list.component.html',
+  animations: [
+    trigger('panelContent', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('300ms', style({ opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ opacity: 1 }),
+        animate('300ms', style({ opacity: 0 }))
+      ])
+    ])
+  ],
   styleUrls: ['./item-list.component.css'],
   providers: [ConfirmationService, MessageService],
 })
@@ -160,6 +176,7 @@ export class ItemListComponent implements OnInit {
   displayDialog: boolean = false;
   isEdit: boolean = false;
   private apiUrl: any = 'https://localhost:7022/api/item';
+  isPanelVisible: any=true;
 
   constructor(
     private itemService: ItemService,
@@ -257,4 +274,7 @@ export class ItemListComponent implements OnInit {
       },
     });
   }
+
+
+  
 }

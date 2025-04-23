@@ -25,14 +25,24 @@
 
     <p-panel header="Item Master" *ngIf="isPanelVisible" [@panelContent]>
       <div class="card">
-        <p-table
+        <!-- <p-table
           [value]="items"
           [paginator]="true"
           [rows]="10"
           [rowsPerPageOptions]="[5, 10, 15, 20]"
           [responsiveLayout]="'scroll'"
           [styleClass]="'custom-table-style'"
-        >
+        > -->
+        <p-table
+  [value]="items"
+  [lazy]="true"
+  (onLazyLoad)="loadItems($event)"
+  [paginator]="true"
+  [rows]="rowsPerPage"
+  [totalRecords]="totalRecords"
+  [rowsPerPageOptions]="[1,2,5,10,20,50]"
+  [loading]="loading"
+>
       <ng-template pTemplate="header">
         <tr>
           <th>Name</th>

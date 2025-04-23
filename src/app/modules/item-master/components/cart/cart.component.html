@@ -1,0 +1,88 @@
+
+<div class="stock-in">
+  <h2>Stock In</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Current Stock</th>
+        <th>Stock In</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.unit }}</td>
+        <td>
+          <!-- <input type="number" [(ngModel)]="stockInAmounts[item.itemId]" />
+          <button (click)="stockIn(item.itemId)">Add Stock</button> -->
+
+          <div class="p-2">
+            <input
+              type="number"
+              min="1"
+              [(ngModel)]="cartQuantities[item.itemId]"
+              placeholder="Qty"
+              style="width: 70px; margin-right: 8px;"
+            />
+
+            <button
+              pButton
+              type="button"
+              icon="pi pi-shopping-cart"
+              class="p-button-sm p-button-rounded p-button-success"
+              (click)="addToCart(item, cartQuantities[item.itemId])"
+            >
+            Add to Cart
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- <app-dynamicpagination></app-dynamicpagination> -->
+
+
+
+<div  style="width: 100%; border: 2px solid #dee2e6; border-radius: 8px; padding: 16px; background-color: #ffffff;">
+<h2>🛒 Your Cart</h2>
+
+<table class="table table-bordered" *ngIf="cartItems.length > 0; else emptyCart">
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+      <th>Price (₹)</th>
+      <th>Total (₹)</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of cartItems">
+      <td>{{ item.name }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.price }}</td>
+      <td>{{ item.quantity * item.price }}</td>
+      <td><button (click)="removeFromCart(item.itemId)">Remove From Cart</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>
+
+<h3 *ngIf="cartItems.length">Total Amount: ₹{{ getTotal() }}</h3>
+
+<button class="btn btn-success" (click)="purchase()" [disabled]="!cartItems.length">
+  Purchase
+</button>
+<p-toast></p-toast>
+</div>
+

@@ -1,0 +1,27 @@
+
+<div class="stock-in">
+  <h2>Stock In</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Current Stock</th>
+        <th>Stock In</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.unit }}</td>
+        <td>
+          <input type="number" [(ngModel)]="stockInAmounts[item.itemId]" />
+          <button (click)="stockIn(item.itemId)">Add Stock</button>
+
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

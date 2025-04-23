@@ -2,62 +2,67 @@
   display: flex;
   height: 100vh;
   overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: #3f51b5;
+.p-sidebar-left {
+  width: 250px !important;
+  background-color: #333 !important; /* Dark background for the sidebar */
   color: white;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
+  height: 100vh !important;
+  position: fixed; /* Make it fixed on the left */
+  top: 0; /* Align to the top */
+  left: 0; /* Align to the left */
+  z-index: 9999; /* Ensure sidebar stays above other elements */
 }
 
-.sidebar h2 {
-  margin-bottom: 1rem;
-  font-size: 20px;
+.p-sidebar .p-sidebar-content {
+  padding: 1.5rem 1rem;
 }
 
-.sidebar a {
+.p-sidebar a {
+  display: block;
   color: white;
-  margin: 0.5rem 0;
-  padding: 0.5rem;
+  padding: 0.6rem 1rem;
   border-radius: 6px;
+  text-decoration: none;
+  font-size: 1rem;
   transition: background 0.3s ease;
 }
 
-.sidebar a:hover {
+.p-sidebar a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-/* Main area */
+.sidebar a.active-link {
+  background-color: rgba(255, 255, 255, 0.2);
+  font-weight: bold;
+}
+
 .main-content {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: hidden;
+  margin-left: 250px; /* Push the content to the right to make space for sidebar */
 }
 
-/* Header */
 .header {
   background-color: white;
   padding: 1rem 2rem;
+  font-size: 1.4rem;
+  font-weight: 600;
   border-bottom: 1px solid #ddd;
-  font-size: 1.3rem;
-  font-weight: bold;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Content Area */
 .content {
+  flex: 1;
   padding: 2rem;
   background-color: #f4f5f7;
-  flex: 1;
   overflow-y: auto;
 }
 
-/* Footer */
 .footer {
   background-color: white;
   padding: 1rem;
@@ -66,9 +71,115 @@
   color: #777;
   border-top: 1px solid #eee;
 }
-/* Example: customizing the position of toast notifications */
+
 .p-toast {
   position: fixed;
   bottom: 20px;
   right: 20px;
+}
+
+::ng-deep .p-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  margin-top: 1.5rem;
+}
+
+::ng-deep .p-paginator .p-paginator-page,
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-last {
+  margin: 0 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+::ng-deep .p-paginator-page.p-highlight {
+  background-color: #3f51b5;
+  color: white;
+  border-color: #3f51b5;
+  font-weight: bold;
+}
+
+::ng-deep .p-paginator-page:hover,
+::ng-deep .p-paginator .p-paginator-first:hover,
+::ng-deep .p-paginator .p-paginator-prev:hover,
+::ng-deep .p-paginator .p-paginator-next:hover,
+::ng-deep .p-paginator .p-paginator-last:hover {
+  background-color: #e1e4e8;
+  border-color: #999;
+}
+
+::ng-deep .p-paginator .p-dropdown {
+  margin-left: 10px;
+  border-radius: 10px;
+  padding: 6px 10px;
+  font-weight: 500;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+}
+
+::ng-deep .custom-table-style .p-paginator {
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #fafafa;
+}
+
+::ng-deep .custom-table-style .p-paginator .p-dropdown {
+  background-color: #ffffff !important;
+  border: 2px solid #dee2e6 !important;
+  border-radius: 12px !important;
+  padding: 4px 8px !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  font-weight: bold;
+  color: #333 !important;
+}
+
+::ng-deep .custom-table-style .p-dropdown-label {
+  color: #495057 !important;
+  font-size: 14px;
+}
+
+::ng-deep .custom-table-style .p-dropdown-trigger {
+  color: #6c757d !important;
+}
+
+.top-bar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  background: #3f51b5;
+  color: white;
+  z-index: 10000; /* Make sure it is above the sidebar */
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 1rem;
+}
+
+.content-area {
+  padding: 2rem;
+}
+
+
+::ng-deep .p-toast {
+  opacity: 1 !important;
+}
+
+::ng-deep .p-toast-message {
+  background-color: #fff !important; /* or your preferred bg color */
+  color: #000 !important;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

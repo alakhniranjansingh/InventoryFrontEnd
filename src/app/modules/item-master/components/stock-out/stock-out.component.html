@@ -1,0 +1,28 @@
+<div class="stock-out">
+  <h2>Stock Out</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Current Stock</th>
+        <th>Stock Out</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.unit }}</td>
+        <td>
+          <input type="number" [(ngModel)]="stockOutAmounts[item.itemId]" />
+
+          <button (click)="stockOut(item.itemId)">Remove Stock</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- <app-dynamicpagination></app-dynamicpagination> -->
